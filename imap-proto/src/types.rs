@@ -34,6 +34,22 @@ pub enum Response<'a> {
     IDs(Vec<u32>),
 }
 
+impl<'a> Response<'a> {
+    pub fn into_inner_fetch(self) -> (u32, Vec<AttributeValue<'a>>) {
+        match self {
+            Response::Fetch(a, b) => (a, b),
+            _ => unreachable!("invalid call"),
+        }
+    }
+
+    pub fn is_fetch(&self) -> bool {
+        match self {
+            Response::Fetch(_, _) => true,
+            _ => false,
+        }
+    }
+}
+
 #[derive(Debug, Eq, PartialEq)]
 pub enum Status {
     Ok,
