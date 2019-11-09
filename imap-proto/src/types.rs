@@ -75,7 +75,7 @@ pub enum ResponseCode<'a> {
     Unseen(u32),
 }
 
-#[derive(Debug, Eq, PartialEq)]
+#[derive(Debug, Eq, PartialEq, Clone, Copy)]
 pub enum StatusAttribute {
     HighestModSeq(u64), // RFC 4551
     Messages(u32),
